@@ -1,12 +1,19 @@
 name: 'Container Action Template'
 description: 'Get started with Container actions'
 author: 'GitHub'
-inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+inputs:
+  lintAllFiles:
+    description: 'Uses Vale to lint all files, even ones that didn't change. By default only files that have changed will be linted.'
+    required: false
+    default: 'bot'
+  lintDirectory:
+    description: 'If specified, Vale will only look for files to validate inside this directory'
+    required: false
+    default: '.'
+  fileGlob:
+    description: 'File glob of what files to run vale against'
+    required: false
+    default: '*.{md,rst}'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.myInput }}
